@@ -21,9 +21,10 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(glm)
 
 add_executable(LearnOpenGL
-    "src/window.cpp"
+    #"src/window.cpp"
     external/glad/glad.c
-)
+ #"src/triangle.cpp" 
+ "src/exTriangle.cpp")
 
 target_include_directories(LearnOpenGL PRIVATE external/glad/include)
 target_link_libraries(LearnOpenGL PRIVATE glfw glm::glm)
