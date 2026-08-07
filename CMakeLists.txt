@@ -22,15 +22,14 @@ FetchContent_MakeAvailable(glm)
 
 add_executable(LearnOpenGL
 external/glad/glad.c
- #"src/window.cpp" "src/triangle.cpp" "src/exTriangle.cpp" 
- "src/shaders.cpp" "src/Shader.h")
+ #"src/window.cpp" "src/triangle.cpp" "src/exTriangle.cpp" "src/shaders.cpp" 
+ "src/Shader.h" "src/texture.cpp" "src/stb_image.h")
 
 target_include_directories(LearnOpenGL PRIVATE external/glad/include)
 target_link_libraries(LearnOpenGL PRIVATE glfw glm::glm)
 
 add_custom_command(
     TARGET LearnOpenGL POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_directory
-    ${CMAKE_CURRENT_SOURCE_DIR}/shaders
-    $<TARGET_FILE_DIR:LearnOpenGL>/shaders
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/shaders $<TARGET_FILE_DIR:LearnOpenGL>/shaders
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/textures $<TARGET_FILE_DIR:LearnOpenGL>/textures
 )
