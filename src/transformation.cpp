@@ -59,7 +59,7 @@ int main() {
 	1, 2, 3  // second triangle
 	};
 
-	unsigned int VBO, VAO, EBO;;
+	unsigned int VBO, VAO, EBO;
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
 	glGenBuffers(1, &EBO);
@@ -92,7 +92,7 @@ int main() {
 
 		transform = glm::translate(transform, glm::vec3(0.6f, -0.4f, 0.0));
 		transform = glm::rotate(transform, sin(timeCount), glm::vec3(0.0f, 0.0f, 1.0f));
-		float scaleRestriction = 1.0f + sin(timeCount) * 0.8f;
+		float scaleRestriction = 1.0f + sin(timeCount) * 0.2f;
 		//transform = glm::scale(transform, glm::vec3(sin(timeCount), sin(timeCount), sin(timeCount)));
 		transform = glm::scale(transform, glm::vec3(scaleRestriction, scaleRestriction, scaleRestriction));
 		
@@ -108,7 +108,7 @@ int main() {
 		// ---------------------
 		transform = glm::mat4(1.0f); 
 		transform = glm::translate(transform, glm::vec3(-0.5f, 0.5f, 0.0f));
-		float scaleAmount = static_cast<float>(sin(glfwGetTime()) * 0.5);
+		float scaleAmount = static_cast<float>(sin(glfwGetTime()) * 0.2);
 		transform = glm::scale(transform, glm::vec3(scaleAmount, scaleAmount, scaleAmount));
 		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, &transform[0][0]);
 

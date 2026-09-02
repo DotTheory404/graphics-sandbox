@@ -22,8 +22,9 @@ FetchContent_MakeAvailable(glm)
 
 add_executable(LearnOpenGL
 external/glad/glad.c
- #"src/window.cpp" "src/triangle.cpp" "src/exTriangle.cpp" "src/shaders.cpp" "src/texture.cpp"
- "src/Shader.h" "src/stb_image.h" "src/transformation.cpp")
+ #"src/window.cpp" "src/triangle.cpp" "src/exTriangle.cpp" "src/shaders.cpp" "src/texture.cpp" "src/transformation.cpp"
+ #"src/Shader.h" "src/stb_image.h" 
+ "src/coordinateSys.cpp")
 
 target_include_directories(LearnOpenGL PRIVATE external/glad/include)
 target_link_libraries(LearnOpenGL PRIVATE glfw glm::glm)
