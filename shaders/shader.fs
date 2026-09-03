@@ -1,28 +1,36 @@
 #version 330 core
+
 out vec4 FragColor;
 
 in vec3 ourColor;
-//in vec2 TexCoord;
-
-//uniform float mixValue;
-
-// texture samplers
-//uniform sampler2D texture1;
-//uniform sampler2D texture2;
+in vec2 TexCoord;
 
 uniform float time;
+uniform sampler2D texture1;
 
 void main()
 {
-	// linearly interpolate between both textures (80% container, 20% awesomeface)
-	//FragColor = mix(texture(texture1, TexCoord), texture(texture2, vec2(1.0 - TexCoord.x, TexCoord.y)), mixValue);
-	float t = sin(time) * 0.5 + 0.5;
+    vec4 texColor = texture(texture1, TexCoord);
 
-    vec3 color = mix(
-        ourColor,
-        vec3(1.0, 0.2, 0.8),
-        t
+    // Рух кольорової хвилі
+    float wave = sin(TexCoord.x * 6.0 + time * 2.0);
+
+    // Перетворюємо -1..1 у 0..1
+    wave = wave * 0.5 + 0.5;
+
+    vec3 blue = vec3(0.1, 0.2, 1.0);
+    vec3 pink = vec3(1.0, 0.1, 0.5);
+
+    vec3 overlayColor = mix(blue, pink, wave);
+
+    // прозорість overlay
+    float opacity = 0.35;
+
+    vec3 finalColor = mix(
+        texColor.rgb,
+        overlayColor,
+        opacity
     );
 
-    FragColor = vec4(color, 1.0);
+    FragColor = vec4(finalColor, texColor.a);
 }
